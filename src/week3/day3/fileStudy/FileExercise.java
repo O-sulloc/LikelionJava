@@ -1,9 +1,9 @@
 package week3.day3.fileStudy;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class FileExercise {
 
@@ -22,19 +22,38 @@ public class FileExercise {
         }
     }
 
+    public List<String> readAllLine() throws IOException{
+        //모든 줄 읽는 메서드. Files 클래스의 readAllLines 메서드를 사용한다.
+
+        List<String> lines;
+
+        lines = Files.readAllLines(Paths.get(this.filename));
+
+        return lines;
+    }
+
+    public String readLine() throws IOException{
+        //한 줄 읽는 메서드. bufferedReader 클래스의 readLine 메소드를 사용한다.
+        BufferedReader bf = new BufferedReader(new FileReader(this.filename));
+
+        String line=bf.readLine();
+
+        return line;
+    }
+
     public String readNChars(int N) throws IOException {
-        //캐릭터 n개(string) 읽는 메서드. 매개변수 n은 읽을 글자 개수?
+        //캐릭터 n개(string) 읽는 메서드. 매개변수 n은 읽을 글자 개수
 
         FileReader fileReader = new FileReader(this.filename);
         String str = ""; //str 변수 초기화
 
         for (int i = 0; i < N; i++) {
-            // -나오면(더 읽을 글자 없으면) break
             int asciiCd = fileReader.read();
             if (asciiCd == -1) {
+                // -1 나오면(더 읽을 글자 없으면) break
                 return str;
             }
-            str += (char) asciiCd; //읽은 글자 쭉쭉 append
+            str += (char) asciiCd; //읽은 글자 append
         }
         return str;
 
@@ -54,7 +73,7 @@ public class FileExercise {
 
         FileReader fileReader = new FileReader(filename); //filename이 매개변수
 
-        return (char) fileReader.read(); //읽은거 char 타입으로 형변화해서 반환해
+        return (char) fileReader.read(); //읽은거 int형이니까 char 타입으로 형변화해서 반환해. 보고싶은건 글자니까
     }
 
     public static void main(String[] args) throws IOException {
@@ -70,7 +89,15 @@ public class FileExercise {
         //System.out.println(output);
 
         //3.N출력 실행
-        String output = fileExercise.readNChars(10); //10글자 읽어
-        System.out.println(output); //출력해
+        //String output = fileExercise.readNChars(10); //10글자 읽어
+        //System.out.println(output); //출력해
+
+        //4.한줄 출력해보기
+        //String output = fileExercise.readLine();
+        //System.out.println(output);
+
+        //5. 모든 문장 출력해보기
+        String output = fileExercise.readAllLine().toString();
+        System.out.println(output);
     }
 }
