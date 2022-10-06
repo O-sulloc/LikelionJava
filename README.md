@@ -1,2 +1,0 @@
-# LikelionJava
-# Day 3
