@@ -10,6 +10,7 @@ public class PopulationMove {
         this.toSido = toSido;
     }
 
+
     //getter setter
     public int getFromSido() {
         return fromSido;

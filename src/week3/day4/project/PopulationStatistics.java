@@ -1,9 +1,6 @@
 package week3.day4.project;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +41,7 @@ public class PopulationStatistics {
 
         String[] parsedData = data.split(",");
 
-        return new PopulationMove(Integer.parseInt(parsedData[0]), Integer.parseInt(parsedData[6]));
+        return new PopulationMove(Integer.parseInt(parsedData[0]), Integer.parseInt(parsedData[1])); //from to
     }
 
     public void createAFile(String filename) {
@@ -58,21 +55,52 @@ public class PopulationStatistics {
         }
     }
 
+    public void write(List<String> strs, String filename) {
+        //생성한 파일에 데이터를 넣는 메서드
+        //
+
+        File file = new File(filename);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (String str : strs) {
+                writer.write(str);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String fromToString(PopulationMove populationMove) {
+        //pm을 string으로 가공
+        return populationMove.getFromSido() + "," + populationMove.getToSido()+"\n";
+    }
+
     public static void main(String[] args) throws IOException {
-        String address = "/Users/jeonghyeonkim/Downloads/2021_인구관련연간자료_20221007_35264.csv";
+        String address = "./from_to.txt";
         PopulationStatistics populationStatistics = new PopulationStatistics();
 
+        //한 줄 넣고 파싱해보기
         //PopulationMove populationMove=populationStatistics.parse("50,130,62000,2021,12,20,26,350,52000,1,1,027,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,528528");
         //System.out.printf("toSido: %d fromSido: %d", populationMove.getToSido(), populationMove.getFromSido());
 
-//        List<PopulationMove> pml = populationStatistics.readFileByLine(address);
-//
-//        for (PopulationMove pm : pml) {
-//            System.out.printf("toSido: %d fromSido: %d", pm.getToSido(), pm.getFromSido());
-//        }
-//        System.out.println(pml.size());
+        //list 형식으로 받아옴
+        //List<PopulationMove> pml = populationStatistics.readFileByLine(address);
+        //System.out.println(pml.size());
 
-        populationStatistics.createAFile("from_to.txt");
 
+        //populationStatistics.createAFile("from_to.txt"); //vv파일 생성
+        List<PopulationMove> pml = populationStatistics.readFileByLine(address);
+        //List<String> strings = new ArrayList<>();
+        for (PopulationMove pm : pml) {
+            System.out.printf("전입:%s, 전출:%s \n", pm.getFromSido(),pm.getToSido());
+            //String fromTo = populationStatistics.fromToString(pm);
+            //strings.add(fromTo);
+        }
+
+        //strings.add("11,11");
+
+        //populationStatistics.write(strings, "./from_to.txt");
     }
 }
