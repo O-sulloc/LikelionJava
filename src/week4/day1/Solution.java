@@ -36,13 +36,13 @@ public class Solution {
         return answer;
     }
 
-    public int solutionB(int n) { //b급 풀이
+    public int solutionB(int n) { //그저 그런 풀이
         int answer = 0;
 
         String str = String.valueOf(n);
 
         for(int i=0;i<str.length();i++){
-            answer +=Integer.parseInt(String.valueOf(str.charAt(i)));
+            answer +=Integer.parseInt(String.valueOf(str.charAt(i))); //비효율적임
         }
 
         return answer;

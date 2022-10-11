@@ -1,13 +1,15 @@
-package challenges.codeUp;
+package challenges.codeUp.to1050;
 
 import java.util.Scanner;
 
-public class Main1032 {
+public class Main1028 {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
-        int input = sc.nextInt();
+        Long num = sc.nextLong();
 
-        System.out.printf("%h", input);
+        System.out.println(num);
+
     }
 }

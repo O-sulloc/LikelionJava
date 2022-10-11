@@ -1,4 +1,4 @@
-package challenges.codeUp;
+package challenges.codeUp.to1050;
 
 import java.util.Scanner;
 

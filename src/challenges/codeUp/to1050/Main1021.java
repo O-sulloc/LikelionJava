@@ -1,5 +1,5 @@
 // codeUp 1021~1023
-package challenges.codeUp;
+package challenges.codeUp.to1050;
 
 import java.util.Scanner;
 
