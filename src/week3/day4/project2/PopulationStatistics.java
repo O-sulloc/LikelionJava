@@ -12,7 +12,7 @@ public class PopulationStatistics {
         String[] splitData = data.split(","); //쉼표로 쪼갠 데이터를 배열에 넣음
 
         //return new PopulationMove(splitData[0], splitData[6]); //생성자는 int타입임
-        return new PopulationMove(splitData[0], splitData[1]);// 메인에서 4. 실행했으니까 이제 배열에 0,1만 있음. 전입,전출
+        return new PopulationMove(splitData[0], splitData[1]);// 메인에서 4. 실행했으니까 한이제 배열에 0,1만 있음. 전입,전출
     }
 
     public List<PopulationMove> readByLine(String filename) throws IOException {
@@ -59,17 +59,17 @@ public class PopulationStatistics {
 
     public Map<String, Integer> getMoveCntMap(List<PopulationMove> pml) {
         // 이제 이 메서드를 사용해서 어디서 어디로 전입전출했는지 카운트를 셀거야
-        //<11:12, 123>이면 11에서 12로 이사간 횟수가 123번
+        //<11,12, 123>이면 11에서 12로 이사간 횟수가 123번
 
         Map<String, Integer> moveCntMap = new HashMap<>();
         for (PopulationMove pm : pml) { //pml데이터를 하나씩 꺼내서 Pm에 넣어줘
-            String key = pm.getFromSido() + "," + pm.getToSido(); //"11,:12" 형식의 키값을 만들었음
+            String key = pm.getFromSido() + "," + pm.getToSido(); //"11,12" 형식의 키값을 만들었음
 
             if (moveCntMap.get(key) == null) {
-                // "11:12"이라는 키값으로 vlaue를 불러와. 근데 거기 null이 저장되어 있어? (서울에서 인천으로 이사 간 횟수가 null)
-                moveCntMap.put(key, 1); //그럼 "11:12"의 밸류에 1을 넣어
+                // "11,12"이라는 키값으로 vlaue를 불러와. 근데 거기 null이 저장되어 있어? (서울에서 인천으로 이사 간 횟수가 null)
+                moveCntMap.put(key, 1); //그럼 "11,12"의 밸류에 1을 넣어
             } else {
-                //"11:12" 키값의 밸류에 null이 아닌 값이 저장되어 있어?
+                //"11,12" 키값의 밸류에 null이 아닌 값이 저장되어 있어?
                 moveCntMap.put(key, moveCntMap.get(key) + 1); //그럼 +1해
             }
         }
@@ -101,7 +101,7 @@ public class PopulationStatistics {
             //System.out.printf("전입:%s 전출: %s\n", pm.getFromSido(), pm.getToSido()); //전입:27 전출: 27이런 식으로 출력됨
 
             String fromTo = pm.getFromSido() + "," + pm.getToSido()+"\n";
-            //위에서 뽑아온 전입:27 전출: 27을 "27,27" 형식으로 가공해서 fromTo에 넣어줘
+            //위에서 뽑아온 27 27을 "27,27" 형식으로 가공해서 fromTo에 넣어줘
             strings.add(fromTo); //"27,27" 이거를 이제 List<String> strings에 넣어줘
         }
 

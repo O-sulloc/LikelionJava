@@ -38,7 +38,6 @@ public class PopulationMove {
     }
 
     //getter
-
     public int getFromSido() {
         return fromSido;
     }
