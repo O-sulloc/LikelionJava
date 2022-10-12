@@ -11,5 +11,6 @@ public class WhyClass {
                 ""
         );
 
+        System.out.println(hospital.getDistrict());
     }
 }
