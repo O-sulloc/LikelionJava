@@ -25,4 +25,7 @@ public class Hospital {
         this.district = str[0] + " " + str[1];
     }
 
+    public String getDistrict() {
+        return district;
+    }
 }
