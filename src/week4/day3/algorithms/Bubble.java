@@ -6,15 +6,14 @@ import java.util.Arrays;
 public class Bubble {
     public int[] sort(int arr[]) {
         int temp = 0;
-        int i=0;
-        for (int j = 1; j < arr.length; j++) {
-            //0<6
-            if (arr[i] > arr[j]) {
-                temp = arr[i]; //temp = 7
-                arr[i] = arr[j];// 7 = 2
-                arr[j] = temp; //2 = 7
+        for(int i=0; i<arr.length;i++){
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    temp = arr[i]; //temp = 7
+                    arr[i] = arr[j];// 7 = 2
+                    arr[j] = temp; //2 = 7
+                }
             }
-            i++;
         }
         return arr;
     }
